@@ -11,7 +11,7 @@ class Player {
         uint8_t level;
     public:
         Player();
-        Player(Player &source) : name(source.name), id(source.id), level(source.level) {}
+        Player(Player &source);
         const void levelUP();
         std::string getName();
         uint8_t getLevel();

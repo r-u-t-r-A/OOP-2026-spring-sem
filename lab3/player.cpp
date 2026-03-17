@@ -12,6 +12,8 @@ Player::Player() : name("NoName"), level(1) {
     id = randomID(); 
 }
 
+Player::Player(Player &source) : name(source.name), id(source.id), level(source.level) {}
+
 const void Player::levelUP() {
     level++;
 }
