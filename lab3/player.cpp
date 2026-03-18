@@ -14,7 +14,7 @@ Player::Player() : name("NoName"), level(1) {
 
 Player::Player(Player &source) : name(source.name), id(source.id), level(source.level) {}
 
-const void Player::levelUP() {
+const void Player::levelUp() {
     level++;
 }
 std::string Player::getName() {

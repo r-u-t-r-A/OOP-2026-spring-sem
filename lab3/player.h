@@ -12,7 +12,7 @@ class Player {
     public:
         Player();
         Player(Player &source);
-        const void levelUP();
+        const void levelUp();
         std::string getName();
         uint8_t getLevel();
         const void setName(std::string name);
