@@ -20,7 +20,7 @@ class Player {
         const void setName(std::string name);
         const void setLevel(uint8_t level);
         uint32_t getId();
-
+        //Instructions were very ambigous on how to implement the debug functions, Ive chosen to make them as templates  
         template <PlayerField F>
         auto& debugReference() {
             if constexpr (F == PlayerField::Name) return name;

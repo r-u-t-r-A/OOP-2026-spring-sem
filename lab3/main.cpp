@@ -8,26 +8,26 @@ int main(void) {
     uint32_t idCopy = newplayer.getId();
     uint8_t levelCopy = newplayer.getLevel();
 
-    std::cout << "--- Printing Values ---\n";
-    std::cout << "Name (Getter):   " << nameCopy << "\n";
-    std::cout << "Name (DebugRef): " << newplayer.debugReference<PlayerField::Name>() << "\n";
-    std::cout << "Name (DebugPtr): " << *newplayer.debugPointer<PlayerField::Name>() << "\n\n";
+    std::cout << "Printing Values: " << std::endl;
+    std::cout << "Name (Getter):   " << nameCopy << std::endl;;
+    std::cout << "Name (DebugRef): " << newplayer.debugReference<PlayerField::Name>() << std::endl;
+    std::cout << "Name (DebugPtr): " << *newplayer.debugPointer<PlayerField::Name>() << std::endl;
 
-    std::cout << "ID (Getter):     " << idCopy << "\n";
-    std::cout << "ID (DebugRef):   " << newplayer.debugReference<PlayerField::Id>() << "\n";
-    std::cout << "ID (DebugPtr):   " << *newplayer.debugPointer<PlayerField::Id>() << "\n\n";
+    std::cout << "ID (Getter):     " << idCopy << std::endl;
+    std::cout << "ID (DebugRef):   " << newplayer.debugReference<PlayerField::Id>() << std::endl;
+    std::cout << "ID (DebugPtr):   " << *newplayer.debugPointer<PlayerField::Id>() << std::endl;
 
-    std::cout << "--- Printing Memory Addresses ---\n";
+    std::cout << "Printing Pointers:" << std::endl;
     
-    std::cout << "[Name]\n";
-    std::cout << "Getter Copy Addr: " << (void*)&nameCopy << "\n";
-    std::cout << "Debug Ref Addr:   " << (void*)&newplayer.debugReference<PlayerField::Name>() << "\n";
-    std::cout << "Debug Ptr Addr:   " << (void*)newplayer.debugPointer<PlayerField::Name>() << "\n\n";
+    std::cout << "[Name]" << std::endl;
+    std::cout << "Getter Copy Addr: " << (void*)&nameCopy << std::endl;
+    std::cout << "Debug Ref Addr:   " << (void*)&newplayer.debugReference<PlayerField::Name>() << std::endl;
+    std::cout << "Debug Ptr Addr:   " << (void*)newplayer.debugPointer<PlayerField::Name>() << std::endl;
 
-    std::cout << "[ID]\n";
-    std::cout << "Getter Copy Addr: " << (void*)&idCopy << "\n";
-    std::cout << "Debug Ref Addr:   " << (void*)&newplayer.debugReference<PlayerField::Id>() << "\n";
-    std::cout << "Debug Ptr Addr:   " << (void*)newplayer.debugPointer<PlayerField::Id>() << "\n";
+    std::cout << "[ID]" << std::endl;
+    std::cout << "Getter Copy Addr: " << (void*)&idCopy << std::endl;
+    std::cout << "Debug Ref Addr:   " << (void*)&newplayer.debugReference<PlayerField::Id>() << std::endl;
+    std::cout << "Debug Ptr Addr:   " << (void*)newplayer.debugPointer<PlayerField::Id>() << std::endl;
 
     return 0;
 }
