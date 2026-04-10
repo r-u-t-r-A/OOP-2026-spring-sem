@@ -10,25 +10,25 @@ Polynomial::Polynomial(const std::vector<double>& terms) {
     coefficients = terms;
 }
 
-Polynomial Polynomial::operator+(const Polynomial& other) const {
-    size_t maxSize = std::max(coefficients.size(), other.coefficients.size());
+Polynomial Polynomial::operator+(const Polynomial& source) const {
+    size_t maxSize = std::max(coefficients.size(), source.coefficients.size());
     std::vector<double> result(maxSize, 0.0);
     
     for (size_t i = 0; i < maxSize; ++i) {
         double a = (i < coefficients.size()) ? coefficients[i] : 0.0;
-        double b = (i < other.coefficients.size()) ? other.coefficients[i] : 0.0;
+        double b = (i < source.coefficients.size()) ? source.coefficients[i] : 0.0;
         result[i] = a + b;
     }
     return Polynomial(result);
 }
 
-Polynomial Polynomial::operator-(const Polynomial& other) const {
-    size_t maxSize = std::max(coefficients.size(), other.coefficients.size());
+Polynomial Polynomial::operator-(const Polynomial& source) const {
+    size_t maxSize = std::max(coefficients.size(), source.coefficients.size());
     std::vector<double> result(maxSize, 0.0);
     
     for (size_t i = 0; i < maxSize; ++i) {
         double a = (i < coefficients.size()) ? coefficients[i] : 0.0;
-        double b = (i < other.coefficients.size()) ? other.coefficients[i] : 0.0;
+        double b = (i < source.coefficients.size()) ? source.coefficients[i] : 0.0;
         result[i] = a - b;
     }
     return Polynomial(result);
@@ -42,15 +42,15 @@ Polynomial Polynomial::operator*(double scalar) const {
     return Polynomial(result);
 }
 
-Polynomial Polynomial::operator*(const Polynomial& other) const {
-    if (coefficients.empty() || other.coefficients.empty()) {
+Polynomial Polynomial::operator*(const Polynomial& source) const {
+    if (coefficients.empty() || source.coefficients.empty()) {
         return Polynomial(std::vector<double>());
     }
     
-    std::vector<double> result(coefficients.size() + other.coefficients.size() - 1, 0.0);
+    std::vector<double> result(coefficients.size() + source.coefficients.size() - 1, 0.0);
     for (size_t i = 0; i < coefficients.size(); ++i) {
-        for (size_t j = 0; j < other.coefficients.size(); ++j) {
-            result[i + j] += coefficients[i] * other.coefficients[j];
+        for (size_t j = 0; j < source.coefficients.size(); ++j) {
+            result[i + j] += coefficients[i] * source.coefficients[j];
         }
     }
     return Polynomial(result);
@@ -63,33 +63,33 @@ double Polynomial::operator[](int index) const {
     return 0.0; 
 }
 
-std::ostream& operator<<(std::ostream& os, const Polynomial& p) {
-    if (p.coefficients.empty()) {
-        os << "0";
-        return os;
+std::ostream& operator<<(std::ostream& stream, const Polynomial& source) {
+    if (source.coefficients.empty()) {
+        stream << "0";
+        return stream;
     }
 
     bool isFirst = true;
     bool allZero = true;
 
-    for (int i = p.coefficients.size() - 1; i >= 0; --i) {
-        if (p.coefficients[i] != 0.0) {
+    for (int i = source.coefficients.size() - 1; i >= 0; --i) {
+        if (source.coefficients[i] != 0.0) {
             allZero = false;
             
             if (!isFirst) {
-                if (p.coefficients[i] > 0) {
-                    os << " + ";
+                if (source.coefficients[i] > 0) {
+                    stream << " + ";
                 } else {
-                    os << " - ";
+                    stream << " - ";
                 }
-            } else if (p.coefficients[i] < 0) {
-                os << "-";
+            } else if (source.coefficients[i] < 0) {
+                stream << "-";
             }
 
-            os << std::abs(p.coefficients[i]);
+            stream << std::abs(source.coefficients[i]);
 
             if (i > 0) {
-                os << "x^" << i;
+                stream << "x^" << i;
             }
             
             isFirst = false;
@@ -97,8 +97,8 @@ std::ostream& operator<<(std::ostream& os, const Polynomial& p) {
     }
     
     if (allZero) {
-        os << "0";
+        stream << "0";
     }
     
-    return os;
+    return stream;
 }
