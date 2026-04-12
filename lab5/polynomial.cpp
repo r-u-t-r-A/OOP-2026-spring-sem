@@ -102,3 +102,41 @@ std::ostream& operator<<(std::ostream& stream, const Polynomial& source) {
     
     return stream;
 }
+
+double Polynomial::solve(double x) const {
+    double result = 0.0;
+    for (size_t i = 0; i < coefficients.size(); ++i) {
+        result += coefficients[i] * std::pow(x, i);
+    }
+    return result;
+}
+
+std::vector<double> Polynomial::solve() const {
+    std::vector<double> roots;
+    if (coefficients.empty()) {
+        return roots; 
+    }
+
+    if (coefficients.size() == 2) {
+        double root = -coefficients[0] / coefficients[1];
+        roots.push_back(root);
+        return roots;
+    }
+
+    if (coefficients.size() == 3) {
+        double a = coefficients[2];
+        double b = coefficients[1];
+        double c = coefficients[0];
+        
+        double discriminant = b * b - 4 * a * c;
+        
+        if (discriminant > 0) {
+            double root1 = (-b + std::sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - std::sqrt(discriminant)) / (2 * a);
+            roots.push_back(root1);
+            roots.push_back(root2);
+        }
+    }
+
+    return roots;
+}

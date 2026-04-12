@@ -12,14 +12,14 @@ private:
 public:
     Polynomial();
     Polynomial(const std::vector<double>& terms);
-
     Polynomial operator+(const Polynomial& source) const;
     Polynomial operator-(const Polynomial& source) const;
     Polynomial operator*(double scalar) const;
     Polynomial operator*(const Polynomial& source) const;
     double operator[](int index) const;
-
     friend std::ostream& operator<<(std::ostream& steam, const Polynomial& source);
+    double solve(double x) const;
+    std::vector<double> solve() const;
 };
 
 #endif // POLYNOMIAL_H
